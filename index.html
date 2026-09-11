@@ -1,0 +1,759 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="現代化單頁網站模板，可直接部署至 GitHub Pages。" />
+  <title>My Website</title>
+
+  <style>
+    :root {
+      --bg: #0b1020;
+      --bg-soft: #11182d;
+      --card: rgba(255, 255, 255, 0.08);
+      --border: rgba(255, 255, 255, 0.12);
+      --text: #f6f7fb;
+      --muted: #aeb7cc;
+      --primary: #7c5cff;
+      --primary-2: #35c2ff;
+      --shadow: 0 20px 60px rgba(0, 0, 0, 0.35);
+      --radius: 22px;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family:
+        Inter, "Noto Sans TC", "Microsoft JhengHei", system-ui, sans-serif;
+      background:
+        radial-gradient(circle at top left, rgba(124, 92, 255, 0.18), transparent 30%),
+        radial-gradient(circle at top right, rgba(53, 194, 255, 0.14), transparent 28%),
+        var(--bg);
+      color: var(--text);
+      line-height: 1.7;
+      min-height: 100vh;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .container {
+      width: min(1120px, calc(100% - 40px));
+      margin: 0 auto;
+    }
+
+    /* ---------- Header ---------- */
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      backdrop-filter: blur(16px);
+      background: rgba(11, 16, 32, 0.72);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+    }
+
+    nav {
+      min-height: 72px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+    }
+
+    .logo {
+      font-weight: 800;
+      letter-spacing: 0.4px;
+      font-size: 1.18rem;
+    }
+
+    .logo span {
+      color: var(--primary-2);
+    }
+
+    .nav-links {
+      list-style: none;
+      display: flex;
+      gap: 28px;
+      color: var(--muted);
+      font-size: 0.95rem;
+    }
+
+    .nav-links a {
+      transition: 0.25s ease;
+    }
+
+    .nav-links a:hover {
+      color: #fff;
+    }
+
+    .menu-btn {
+      display: none;
+      border: 1px solid var(--border);
+      background: var(--card);
+      color: white;
+      padding: 9px 12px;
+      border-radius: 12px;
+      cursor: pointer;
+      font-size: 1.1rem;
+    }
+
+    /* ---------- Hero ---------- */
+    .hero {
+      min-height: calc(100vh - 72px);
+      display: grid;
+      grid-template-columns: 1.15fr 0.85fr;
+      align-items: center;
+      gap: 60px;
+      padding: 80px 0;
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 14px;
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.06);
+      color: #dce4f6;
+      font-size: 0.9rem;
+      margin-bottom: 22px;
+    }
+
+    .badge-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: #55e29a;
+      box-shadow: 0 0 18px rgba(85, 226, 154, 0.8);
+    }
+
+    h1 {
+      font-size: clamp(2.7rem, 7vw, 5.8rem);
+      line-height: 1.02;
+      letter-spacing: -0.055em;
+      margin-bottom: 24px;
+    }
+
+    .gradient-text {
+      background: linear-gradient(90deg, #a997ff, #5ccfff);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+
+    .hero p {
+      max-width: 650px;
+      font-size: 1.08rem;
+      color: var(--muted);
+      margin-bottom: 32px;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 14px;
+      padding: 13px 20px;
+      border: 1px solid var(--border);
+      cursor: pointer;
+      transition: 0.25s ease;
+      font-weight: 700;
+      font-size: 0.95rem;
+    }
+
+    .btn-primary {
+      border: none;
+      background: linear-gradient(135deg, var(--primary), var(--primary-2));
+      box-shadow: 0 14px 36px rgba(81, 118, 255, 0.25);
+    }
+
+    .btn-secondary {
+      background: rgba(255, 255, 255, 0.06);
+    }
+
+    .btn:hover {
+      transform: translateY(-2px);
+    }
+
+    .hero-card {
+      position: relative;
+      min-height: 460px;
+      border-radius: 34px;
+      border: 1px solid var(--border);
+      background:
+        linear-gradient(145deg, rgba(255, 255, 255, 0.12), rgba(255, 255, 255, 0.025));
+      box-shadow: var(--shadow);
+      overflow: hidden;
+    }
+
+    .orb {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(6px);
+    }
+
+    .orb.one {
+      width: 260px;
+      height: 260px;
+      background: rgba(124, 92, 255, 0.72);
+      left: -60px;
+      top: -50px;
+    }
+
+    .orb.two {
+      width: 220px;
+      height: 220px;
+      background: rgba(53, 194, 255, 0.55);
+      right: -70px;
+      bottom: -50px;
+    }
+
+    .glass-panel {
+      position: absolute;
+      inset: 50% auto auto 50%;
+      transform: translate(-50%, -50%);
+      width: min(78%, 360px);
+      padding: 28px;
+      border-radius: 24px;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      background: rgba(8, 13, 28, 0.5);
+      backdrop-filter: blur(18px);
+      box-shadow: 0 15px 45px rgba(0, 0, 0, 0.25);
+    }
+
+    .mock-dot-row {
+      display: flex;
+      gap: 8px;
+      margin-bottom: 24px;
+    }
+
+    .mock-dot {
+      width: 9px;
+      height: 9px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.35);
+    }
+
+    .mock-title {
+      width: 72%;
+      height: 18px;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.82);
+      margin-bottom: 14px;
+    }
+
+    .mock-line {
+      width: 100%;
+      height: 10px;
+      background: rgba(255, 255, 255, 0.18);
+      border-radius: 999px;
+      margin: 10px 0;
+    }
+
+    .mock-line.short {
+      width: 64%;
+    }
+
+    .mock-boxes {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      margin-top: 24px;
+    }
+
+    .mock-box {
+      height: 92px;
+      border-radius: 16px;
+      background: linear-gradient(
+        135deg,
+        rgba(124, 92, 255, 0.35),
+        rgba(53, 194, 255, 0.16)
+      );
+      border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    /* ---------- Common Section ---------- */
+    section {
+      padding: 100px 0;
+    }
+
+    .section-head {
+      max-width: 700px;
+      margin-bottom: 46px;
+    }
+
+    .eyebrow {
+      color: #8edcff;
+      font-size: 0.9rem;
+      font-weight: 800;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      margin-bottom: 10px;
+    }
+
+    h2 {
+      font-size: clamp(2rem, 5vw, 3.4rem);
+      letter-spacing: -0.04em;
+      line-height: 1.12;
+      margin-bottom: 16px;
+    }
+
+    .section-head p {
+      color: var(--muted);
+    }
+
+    /* ---------- Features ---------- */
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+    }
+
+    .card {
+      padding: 28px;
+      border-radius: var(--radius);
+      border: 1px solid var(--border);
+      background: var(--card);
+      backdrop-filter: blur(14px);
+      transition: 0.25s ease;
+    }
+
+    .card:hover {
+      transform: translateY(-6px);
+      border-color: rgba(124, 92, 255, 0.45);
+      box-shadow: 0 18px 40px rgba(0, 0, 0, 0.22);
+    }
+
+    .icon {
+      width: 52px;
+      height: 52px;
+      border-radius: 15px;
+      display: grid;
+      place-items: center;
+      font-size: 1.4rem;
+      background: linear-gradient(
+        135deg,
+        rgba(124, 92, 255, 0.45),
+        rgba(53, 194, 255, 0.25)
+      );
+      margin-bottom: 22px;
+    }
+
+    .card h3 {
+      margin-bottom: 10px;
+      font-size: 1.12rem;
+    }
+
+    .card p {
+      color: var(--muted);
+      font-size: 0.95rem;
+    }
+
+    /* ---------- About ---------- */
+    .about-wrap {
+      display: grid;
+      grid-template-columns: 0.9fr 1.1fr;
+      gap: 46px;
+      align-items: center;
+    }
+
+    .about-visual {
+      min-height: 420px;
+      border-radius: 30px;
+      border: 1px solid var(--border);
+      background:
+        linear-gradient(rgba(255, 255, 255, 0.04), rgba(255, 255, 255, 0.02)),
+        radial-gradient(circle at 30% 30%, rgba(124, 92, 255, 0.5), transparent 38%),
+        radial-gradient(circle at 70% 70%, rgba(53, 194, 255, 0.4), transparent 34%),
+        #11182d;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .about-badge {
+      position: absolute;
+      padding: 15px 18px;
+      border-radius: 16px;
+      border: 1px solid rgba(255, 255, 255, 0.16);
+      background: rgba(9, 14, 28, 0.56);
+      backdrop-filter: blur(14px);
+      box-shadow: var(--shadow);
+    }
+
+    .about-badge.a {
+      top: 22%;
+      left: 10%;
+    }
+
+    .about-badge.b {
+      right: 10%;
+      bottom: 22%;
+    }
+
+    .about-copy p {
+      color: var(--muted);
+      margin-bottom: 18px;
+    }
+
+    .stats {
+      margin-top: 28px;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 14px;
+    }
+
+    .stat {
+      padding: 18px;
+      border-radius: 16px;
+      background: rgba(255, 255, 255, 0.055);
+      border: 1px solid var(--border);
+    }
+
+    .stat strong {
+      display: block;
+      font-size: 1.5rem;
+      margin-bottom: 3px;
+    }
+
+    .stat span {
+      color: var(--muted);
+      font-size: 0.85rem;
+    }
+
+    /* ---------- Contact ---------- */
+    .contact-box {
+      padding: 60px;
+      border-radius: 30px;
+      text-align: center;
+      border: 1px solid var(--border);
+      background:
+        radial-gradient(circle at 20% 10%, rgba(124, 92, 255, 0.18), transparent 34%),
+        radial-gradient(circle at 85% 90%, rgba(53, 194, 255, 0.16), transparent 32%),
+        rgba(255, 255, 255, 0.055);
+    }
+
+    .contact-box p {
+      max-width: 600px;
+      color: var(--muted);
+      margin: 0 auto 28px;
+    }
+
+    /* ---------- Footer ---------- */
+    footer {
+      padding: 32px 0 48px;
+      color: #8791a7;
+      text-align: center;
+      font-size: 0.9rem;
+    }
+
+    /* ---------- Animation ---------- */
+    .reveal {
+      opacity: 0;
+      transform: translateY(24px);
+      transition: 0.7s ease;
+    }
+
+    .reveal.show {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* ---------- Responsive ---------- */
+    @media (max-width: 850px) {
+      .hero,
+      .about-wrap {
+        grid-template-columns: 1fr;
+      }
+
+      .hero {
+        min-height: auto;
+        padding-top: 70px;
+      }
+
+      .hero-card {
+        min-height: 380px;
+      }
+
+      .grid {
+        grid-template-columns: 1fr;
+      }
+
+      .nav-links {
+        position: absolute;
+        top: 72px;
+        left: 20px;
+        right: 20px;
+        display: none;
+        flex-direction: column;
+        gap: 0;
+        padding: 10px;
+        border-radius: 18px;
+        border: 1px solid var(--border);
+        background: rgba(13, 19, 37, 0.96);
+        box-shadow: var(--shadow);
+      }
+
+      .nav-links.active {
+        display: flex;
+      }
+
+      .nav-links li a {
+        display: block;
+        padding: 13px 12px;
+      }
+
+      .menu-btn {
+        display: inline-block;
+      }
+    }
+
+    @media (max-width: 560px) {
+      .container {
+        width: min(100% - 28px, 1120px);
+      }
+
+      section {
+        padding: 76px 0;
+      }
+
+      .contact-box {
+        padding: 40px 22px;
+      }
+
+      .stats {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <div class="container">
+      <nav>
+        <a class="logo" href="#home">YOUR<span>WEB</span></a>
+
+        <ul class="nav-links" id="navLinks">
+          <li><a href="#home">首頁</a></li>
+          <li><a href="#features">特色</a></li>
+          <li><a href="#about">關於</a></li>
+          <li><a href="#contact">聯絡</a></li>
+        </ul>
+
+        <button class="menu-btn" id="menuBtn" aria-label="開啟選單">
+          ☰
+        </button>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <!-- HERO -->
+    <section class="hero container" id="home">
+      <div>
+        <div class="badge reveal">
+          <span class="badge-dot"></span>
+          單一 HTML · GitHub Pages Ready
+        </div>
+
+        <h1 class="reveal">
+          打造一個<br />
+          <span class="gradient-text">漂亮又好用</span><br />
+          的網站。
+        </h1>
+
+        <p class="reveal">
+          這是一個使用 HTML、CSS 與 JavaScript 製作的單頁式網站。
+          不需要框架、不需要伺服器，只要上傳到 GitHub，就能透過 GitHub Pages 免費部署。
+        </p>
+
+        <div class="hero-actions reveal">
+          <a class="btn btn-primary" href="#features">開始瀏覽</a>
+          <a class="btn btn-secondary" href="#contact">聯絡我</a>
+        </div>
+      </div>
+
+      <div class="hero-card reveal">
+        <div class="orb one"></div>
+        <div class="orb two"></div>
+
+        <div class="glass-panel">
+          <div class="mock-dot-row">
+            <span class="mock-dot"></span>
+            <span class="mock-dot"></span>
+            <span class="mock-dot"></span>
+          </div>
+
+          <div class="mock-title"></div>
+          <div class="mock-line"></div>
+          <div class="mock-line"></div>
+          <div class="mock-line short"></div>
+
+          <div class="mock-boxes">
+            <div class="mock-box"></div>
+            <div class="mock-box"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FEATURES -->
+    <section id="features">
+      <div class="container">
+        <div class="section-head reveal">
+          <div class="eyebrow">Features</div>
+          <h2>一個檔案，就能完成整個網站。</h2>
+          <p>
+            所有 HTML、CSS、JavaScript 都集中在同一個檔案內，
+            適合個人網站、社團頁面、作品集、活動介紹或簡易品牌官網。
+          </p>
+        </div>
+
+        <div class="grid">
+          <article class="card reveal">
+            <div class="icon">⚡</div>
+            <h3>快速</h3>
+            <p>
+              沒有大型框架，瀏覽器直接載入，部署簡單且容易維護。
+            </p>
+          </article>
+
+          <article class="card reveal">
+            <div class="icon">📱</div>
+            <h3>RWD 響應式</h3>
+            <p>
+              電腦、平板與手機都能正常顯示，版面會依螢幕尺寸自動調整。
+            </p>
+          </article>
+
+          <article class="card reveal">
+            <div class="icon">✨</div>
+            <h3>互動效果</h3>
+            <p>
+              內建滑入動畫、手機選單與平滑捲動，讓網站更有質感。
+            </p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ABOUT -->
+    <section id="about">
+      <div class="container about-wrap">
+        <div class="about-visual reveal">
+          <div class="about-badge a">🎨 現代化視覺</div>
+          <div class="about-badge b">🚀 免費部署</div>
+        </div>
+
+        <div class="about-copy reveal">
+          <div class="eyebrow">About</div>
+          <h2>你可以把它改成任何你想要的網站。</h2>
+
+          <p>
+            修改標題、文字、按鈕、區塊或配色，就能快速變成屬於你的網站。
+            如果之後需要加入圖片、作品展示、登入、表單或資料庫，也可以再繼續擴充。
+          </p>
+
+          <p>
+            目前這個版本是純前端靜態網站，因此最適合直接使用 GitHub Pages 部署。
+          </p>
+
+          <div class="stats">
+            <div class="stat">
+              <strong>1</strong>
+              <span>HTML 檔案</span>
+            </div>
+            <div class="stat">
+              <strong>100%</strong>
+              <span>響應式設計</span>
+            </div>
+            <div class="stat">
+              <strong>FREE</strong>
+              <span>GitHub Pages</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section id="contact">
+      <div class="container">
+        <div class="contact-box reveal">
+          <div class="eyebrow">Contact</div>
+          <h2>準備好建立你的網站了嗎？</h2>
+          <p>
+            你可以把這裡改成 Instagram、Email、Discord、LINE，
+            或任何你想讓訪客聯絡你的方式。
+          </p>
+
+          <a
+            class="btn btn-primary"
+            href="mailto:your@email.com"
+          >
+            聯絡我
+          </a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container">
+      © <span id="year"></span> Your Website. All rights reserved.
+    </div>
+  </footer>
+
+  <script>
+    // 自動更新年份
+    document.getElementById("year").textContent = new Date().getFullYear();
+
+    // 手機版導覽列
+    const menuBtn = document.getElementById("menuBtn");
+    const navLinks = document.getElementById("navLinks");
+
+    menuBtn.addEventListener("click", () => {
+      navLinks.classList.toggle("active");
+    });
+
+    // 點選選單後自動關閉
+    document.querySelectorAll(".nav-links a").forEach(link => {
+      link.addEventListener("click", () => {
+        navLinks.classList.remove("active");
+      });
+    });
+
+    // 滑入動畫
+    const observer = new IntersectionObserver(
+      entries => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("show");
+          }
+        });
+      },
+      {
+        threshold: 0.12
+      }
+    );
+
+    document.querySelectorAll(".reveal").forEach(el => {
+      observer.observe(el);
+    });
+  </script>
+</body>
+</html>
